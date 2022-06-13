@@ -1,0 +1,19 @@
+---
+- hosts: win
+  gather_facts: yes 
+  tasks: 
+  - name: RDP installation
+    win_feature:
+      name: Remote-Desktop-Services
+      included_sub_features: yes
+      status: present
+    register: win_feature
+
+  - name: Reboot if installing Web-Server feature requires it
+    win_reboot:
+    when: win_feature.reboot_required
+
+
+
+
+...

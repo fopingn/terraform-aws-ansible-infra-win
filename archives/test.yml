@@ -1,0 +1,7 @@
+---
+- hosts: win2016
+  gather_facts: yes
+  tasks:
+    - name: test facts
+      debug: 
+        msg: The adress is "{{ ansible_ip_addresses[0] }}" and the hostname is "{{ ansible_hostname }}" 

@@ -1,0 +1,32 @@
+- hosts: win2019
+  gather_facts: no
+  vars_files:
+    - group_vars/windows/vars_win.yml
+    - group_vars/windows/vault_win.yml
+    - host_vars/windows/host_vars_win.yml
+  tasks:
+  - name: Remove the built local admin
+    win_user:
+     name: administrateur
+     password: "{{ admin_local_password }}"
+     state: present
+     groups:
+        - Administrators
+
+
+  - name: New local Admin
+    win_user: 
+      name: "{{ admin_local }}"
+      password: "{{ admin_local_password }}"
+      state: present
+      groups:
+        - Administrators
+
+  - name: Change the hostname
+    win_hostname:
+      name: WIN2019
+    register: res
+
+  - name: Reboot
+    win_reboot:
+    when: res.reboot_required

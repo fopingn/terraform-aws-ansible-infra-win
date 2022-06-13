@@ -1,0 +1,41 @@
+---
+- hosts: win
+  gather_facts: yes
+  tasks: 
+  #### Installation de l'agent zabbix ###
+  - name: install Zabbix 
+    win_chocolatey: 
+      name: zabbix-agent
+      state: present
+
+  #### Installation l'agent commvault ###
+
+  - name: copy commvault agent bin in the temp folder
+    win_copy: 
+      src: commvault.zip
+      dest: C:\Temp\
+
+  - name: unzip commvault package
+    win_unzip:
+      src: C:\Temp\commvault.zip
+      dest: C:\Temp\
+
+  - name: install commvault
+    win_package: 
+      path: C:\Temp\commvault\LaunchInstaller.exe
+      product_id: '{05EF5ACB-FB41-4402-BA09-6B5B29D739C4}'
+      wait: yes
+      state: present
+
+  - name: clean the commvault zip file
+    win_file: 
+      path: C:\Temp\commvault.zip
+      state: absent
+
+  - name: clean the commvault file
+    win_file:
+      path: C:\Temp\commvault
+      state: absent
+
+
+...

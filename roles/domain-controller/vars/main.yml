@@ -1,0 +1,9 @@
+---
+# Type of connection
+ansible_user: Administrator
+ansible_password: Devops2020!
+ansible_connection: ssh
+ansible_winrm_server_cert_validation: ignore
+# vars file for domain-controller
+dns_domain_name: ansiaws.lab
+safe_mode_password: terraform2020
