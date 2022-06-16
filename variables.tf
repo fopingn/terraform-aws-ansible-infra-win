@@ -19,3 +19,8 @@ variable "windows_password" {
 
 }
 
+#variable "ssh_user" {
+#  type = string
+#  description = "(optional) describe your variable"
+#}
+#

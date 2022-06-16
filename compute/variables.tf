@@ -11,8 +11,8 @@ variable "key_name" {
 variable "user_data" {
   default = ""
 }
-variable "windows_user" {}
 variable "windows_password" {}
+
 variable "tags" {
-  
+
 }

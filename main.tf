@@ -17,14 +17,13 @@ module "networking" {
 
 
 module "compute" {
-  source           = "./compute"
-  public_sg        = module.networking.public_sg
-  public_subnets   = module.networking.public_subnets
-  instance_count   = 1
-  instance_type    = "t2.micro"
-  vol_size         = "30"
-  key_name         = var.key_name
-  windows_user     = var.windows_user
+  source         = "./compute"
+  public_sg      = module.networking.public_sg
+  public_subnets = module.networking.public_subnets
+  instance_count = 1
+  instance_type  = "t2.micro"
+  vol_size       = "30"
+  key_name       = var.key_name
   windows_password = var.windows_password
   tags             = local.tags
   user_data = templatefile("files/user_data.tpl",
@@ -32,6 +31,5 @@ module "compute" {
       Password = var.windows_password
     }
   )
-  
 
 }

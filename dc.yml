@@ -1,6 +1,6 @@
 ---
 - name: Install  domain-controller
-  hosts: "{{ variable_host | default ('tag_Name_addc') }}" #tag_Name_addc
+  hosts: all #"{{ variable_host | default ('tag_Name_addc') }}" #tag_Name_addc
   roles: 
     - domain-controller
 

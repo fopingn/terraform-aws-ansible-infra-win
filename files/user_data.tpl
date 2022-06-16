@@ -22,10 +22,13 @@
        } else {
            Write-Output "Firewall rule 'OpenSSH-Server-In-TCP' has been created and exists."
        }
+
+       # Can test this also for firewall issue
+       #"Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 #      netsh advfirewall firewall add rule name="WinRM in" protocol=TCP dir=in profile=any localport=5985 remoteip=any localip=any action=allow
 #      # Set Administrator password
-#      $Password = "${Password}"
-#      $admin = [adsi]("WinNT://./administrator, user")
-#      $admin.psbase.invoke("SetPassword", $Password)
+       $Password = "${Password}"
+       $admin = [adsi]("WinNT://./administrator, user")
+       $admin.psbase.invoke("SetPassword", $Password)
     </powershell>
 
